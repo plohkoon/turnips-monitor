@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import Chart from './Chart/Chart';
+import TurnipsGraph from './TurnipsGraph/TurnipsGraph';
 import TopBar from './TopBar/TopBar';
 import AddObservation from './AddObservation/AddObservation';
 import DataTable from './DataTable/DataTable';
@@ -19,11 +19,13 @@ const theme = createMuiTheme({
 
 function App() {
 
+  const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+  
   let [date, setDate] = useState(Date());
   let [data, setData] = useState([]);
 
   async function updateData() {
-    let response = await fetch(`http://turnips.tallrandy.dev/turnips?date=${date}`, {
+    let response = await fetch(isDev ? `http://localhost:80/turnips?date=${date}` : `/turnips?date=${date}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'},
     }).then(res => res.json());
@@ -41,7 +43,7 @@ function App() {
         <TopBar date={date} setDate={setDate} />
         <div className="main-body">
           <div className="chart-container">
-            <Chart style={{margin: "10px"}} date={date} data={data}/>
+            <TurnipsGraph style={{margin: "10px"}} date={date} data={data}/>
           </div>
           <div className="table-container">
             <DataTable data={data} />

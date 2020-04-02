@@ -8,7 +8,7 @@ const url = require('url'),
       sqlite = require('sqlite3').verbose(),
       cors = require('cors');
 const app = express();
-const port = 80;
+const port =  process.env.port || 80;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -126,4 +126,6 @@ app.route('/turnips')
     });
   });
 
-app.listen(port);
+app.listen(port, () => {
+  console.log("listening on ", port);
+});

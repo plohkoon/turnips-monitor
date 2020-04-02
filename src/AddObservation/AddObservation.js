@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import { Fab, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Slider, Input, Button, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
+import { Fab, Dialog, DialogTitle, DialogContent, DialogActions, Slider, Input, Button, Select, MenuItem, InputLabel, FormControl } from '@material-ui/core';
 
 import './styles.css';
 
 import Add from '@material-ui/icons/Add';
 
 function AddObservation(props) {
+
+  const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
   let [display, setDisplay] = useState(false);
   let [value, setValue] = useState(200);
@@ -76,7 +78,7 @@ function AddObservation(props) {
           <DialogActions>
             <Button onClick={() => {
               if(name.length===0) return;
-              fetch(`http://turnips.tallrandy.dev/turnips?date=${new Date()}`, {
+              fetch(isDev ? `http://localhost:80/turnips?date=${new Date()}` : `/turnips?date=${new Date()}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({

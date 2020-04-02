@@ -8,7 +8,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import './TopBar.css';
 
 function TopBar(props) {
-  console.log(props.date);
+  
   const handleChange = date => {
     props.setDate(date);
   }
