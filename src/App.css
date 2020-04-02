@@ -20,6 +20,7 @@
 }
 .table-container {
   margin: 10px;
+  min-width: 500px;
 }
 .fab-container {
   position: fixed;
@@ -34,9 +35,11 @@
   }
   .chart-container {
     width: 80%;
+    flex: 1;
   }
   .table-container {
     width: 80%;
+    flex: 1;
   }
 }
 
