@@ -23,7 +23,7 @@ function App() {
   let [data, setData] = useState([]);
 
   async function updateData() {
-    let response = await fetch(`http://localhost:80/turnips?date=${date}`, {
+    let response = await fetch(`http://turnips.tallrandy.dev/turnips?date=${date}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'},
     }).then(res => res.json());

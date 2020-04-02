@@ -76,7 +76,7 @@ function AddObservation(props) {
           <DialogActions>
             <Button onClick={() => {
               if(name.length===0) return;
-              fetch(`http://localhost:80/turnips?date=${new Date()}`, {
+              fetch(`http://turnips.tallrandy.dev/turnips?date=${new Date()}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
